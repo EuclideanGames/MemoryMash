@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 {
     #region Variables
     public CanvasGroup MenuPanel;
+    public Text AuthenticationText;
 
     public CanvasGroup GamePanel;
     public Text ScoreText;
@@ -28,7 +29,8 @@ public class GameManager : MonoBehaviour
     public SnapScrollRect DifficultySelectPanel;
 
     public float MaxTimeBetweenAds;
-    
+
+    public Square SquarePrefab;
     public List<Difficulty> Difficulties;
 
     private int selectedGameModeIndex;
@@ -165,21 +167,35 @@ public class GameManager : MonoBehaviour
 
     public void SignIn()
     {
+        if (Social.localUser.authenticated)
+        {
+            return;
+        }
+
         Social.localUser.Authenticate((bool success) =>
         {
             //on success, allow user to interact with menu
             //on failure, show error message
+
+            //MenuPanel.interactable = success;
+            //AuthenticationText.gameObject.SetActive(!success);
         });
     }
 
     public void OpenAchievements()
     {
-        Social.Active.ShowAchievementsUI();
+        if (Social.localUser.authenticated)
+        {
+            Social.Active.ShowAchievementsUI();
+        }
     }
 
     public void OpenLeaderboard()
     {
-        Social.Active.ShowLeaderboardUI();
+        if (Social.localUser.authenticated)
+        {
+            Social.Active.ShowLeaderboardUI();
+        }
     }
     #endregion
 
@@ -229,6 +245,7 @@ public class GameManager : MonoBehaviour
 
         activeGameMode.SelectedDifficulty = Difficulties[selectedDifficultyIndex];
         activeGameMode.ActiveFactory = SquareFactory.CreateFactory();
+        activeGameMode.ActiveFactory.SquarePrefab = SquarePrefab;
 
         activeGameMode.InitializeGame();
         

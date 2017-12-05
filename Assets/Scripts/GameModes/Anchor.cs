@@ -72,7 +72,36 @@ public class Anchor : GameMode
 
     public override void PostScore()
     {
+        if (!Social.localUser.authenticated)
+        {
+            return;
+        }
+
         base.PostScore();
+
+        string leaderboard;
+        string diffName = SelectedDifficulty.Name;
+
+        switch (diffName)
+        {
+            case "Easy":
+                leaderboard = GPGSIds.leaderboard_easy_anchor;
+                break;
+            case "Medium":
+                leaderboard = GPGSIds.leaderboard_medium_anchor;
+                break;
+            case "Hard":
+                leaderboard = GPGSIds.leaderboard_hard_anchor;
+                break;
+            case "Insane":
+                leaderboard = GPGSIds.leaderboard_insane_anchor;
+                break;
+            default:
+                return;
+        }
+
+        Social.Active.ReportScore(currentScore, leaderboard, success => { });
+        AchievementManager.CheckScoreAchievements("Anchor", diffName, currentScore);
     }
 
     public override Dictionary<string, string> GetGameSummary()

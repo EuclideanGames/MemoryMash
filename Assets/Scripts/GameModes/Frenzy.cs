@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Boo.Lang.Environments;
 using UnityEngine;
 
 public class Frenzy : GameMode
@@ -54,7 +55,38 @@ public class Frenzy : GameMode
 
     public override void PostScore()
     {
+        if (!Social.localUser.authenticated)
+        {
+            return;
+        }
+
         base.PostScore();
+
+        string leaderboard;
+        string diff_name = SelectedDifficulty.name;
+
+        switch (diff_name)
+        {
+            case "Easy":
+                leaderboard = GPGSIds.leaderboard_easy_frenzy;
+                break;
+            case "Medium":
+                leaderboard = GPGSIds.leaderboard_medium_frenzy;
+                break;
+            case "Hard":
+                leaderboard = GPGSIds.leaderboard_hard_frenzy;
+                break;
+            case "Insane":
+                leaderboard = GPGSIds.leaderboard_insane_frenzy;
+                break;
+            default:
+                return;
+        }
+
+        Social.Active.ReportScore(Mathf.FloorToInt(currentSpawnTimer), 
+            leaderboard, (bool success) => { });
+
+        AchievementManager.CheckTimeAchievements("Frenzy", diff_name, timeSurvived);
     }
 
     public override Dictionary<string, string> GetGameSummary()

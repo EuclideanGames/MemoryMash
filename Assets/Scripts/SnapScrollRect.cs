@@ -5,7 +5,6 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(RectMask2D))]
 [RequireComponent(typeof(ScrollRect))]
 public class SnapScrollRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
@@ -13,12 +12,16 @@ public class SnapScrollRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     public UnityIntEvent OnPageChanged;
 
     public int StartPageIndex = 0;
+    public float FastSwipeTime = 0.3f;
+    public int FastSwipeDistance = 100;
     public float DecelerationRate = 10.0f;
     public float SnapDistance = 50.0f;
 
     private ScrollRect scrollRectComponent;
     private RectTransform scrollRectRect;
     private RectTransform scrollRectContainer;
+
+    private int fastSwipeMaxLimit;
 
     private bool horizontal;
 
@@ -68,6 +71,7 @@ public class SnapScrollRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
     {
         SetPagePositions();
         SetPage(StartPageIndex);
+        FixAlignment();
     }
 
     private void SetPagePositions()
@@ -84,12 +88,14 @@ public class SnapScrollRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
             width = (int)scrollRectRect.rect.width;
             offsetX = width / 2;
             containerWidth = width * pageCount;
+            fastSwipeMaxLimit = width;
         }
         else
         {
             height = (int)scrollRectRect.rect.height;
             offsetY = height / 2;
             containerHeight = height * pageCount;
+            fastSwipeMaxLimit = height;
         }
 
         Vector2 newSize = new Vector2(containerWidth, containerHeight);
@@ -170,7 +176,25 @@ public class SnapScrollRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
             difference = -(dragStartPosition.y - scrollRectContainer.anchoredPosition.y);
         }
 
-        LerpToPage(GetNearestPage());
+        if (Time.unscaledTime - dragStartTime < FastSwipeTime &&
+            Mathf.Abs(difference) > FastSwipeDistance &&
+            Mathf.Abs(difference) < fastSwipeMaxLimit)
+        {
+            if (difference > 0)
+            {
+                LerpToPage(currentPage + 1);
+            }
+            else
+            {
+                LerpToPage(currentPage - 1);
+            }
+        }
+        else
+        {
+            LerpToPage(GetNearestPage());
+        }
+
+        dragging = false;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -185,5 +209,12 @@ public class SnapScrollRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
         {
             
         }
+    }
+
+    //TODO: Fix this issue (misaligned main menu on startup)
+    private void FixAlignment()
+    {
+        transform.parent.GetComponent<VerticalLayoutGroup>().childAlignment = TextAnchor.UpperLeft;
+        transform.parent.GetComponent<VerticalLayoutGroup>().childAlignment = TextAnchor.MiddleCenter;
     }
 }

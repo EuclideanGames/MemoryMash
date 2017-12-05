@@ -35,6 +35,11 @@ public class Square : MonoBehaviour
         spriteRenderer.color = color;
     }
 
+    public Color GetColor()
+    {
+        return spriteRenderer.color;
+    }
+
     public virtual void Hit()
     {
         OnSquareHitEventArgs args = new OnSquareHitEventArgs();

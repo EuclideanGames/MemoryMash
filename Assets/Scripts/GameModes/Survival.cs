@@ -62,6 +62,11 @@ public class Survival : GameMode
 
     public override void PostScore()
     {
+        if (!Social.localUser.authenticated)
+        {
+            return;
+        }
+
         base.PostScore();
 
         string leaderboard;
@@ -88,7 +93,7 @@ public class Survival : GameMode
         Social.Active.ReportScore(Mathf.FloorToInt(timeSurvived), 
             leaderboard, (bool success) => { });
 
-        AchievementManager.CheckTimeAchievements(diff_name, timeSurvived);
+        AchievementManager.CheckTimeAchievements("Survival", diff_name, timeSurvived);
     }
 
     public override Dictionary<string, string> GetGameSummary()

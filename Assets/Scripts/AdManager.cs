@@ -23,6 +23,7 @@ public class AdManager : MonoBehaviour
     public UnityEvent OnInterstitialClickLeaveApplication;
 
     private string editorBannerAdUnit = "unused";
+    private string androidBannerTestAdUnit = "ca-app-pub-3940256099942544/5224354917";
     private string androidBannerAdUnit = "ca-app-pub-9862166203319203/7397366975";
     private string androidInterstitialAdUnit = "ca-app-pub-9862166203319203/2070686970";
 

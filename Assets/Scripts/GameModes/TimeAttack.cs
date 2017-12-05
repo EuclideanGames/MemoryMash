@@ -59,6 +59,11 @@ public class TimeAttack : GameMode
 
     public override void PostScore()
     {
+        if (!Social.localUser.authenticated)
+        {
+            return;
+        }
+
         base.PostScore();
 
         string leaderboard;
@@ -67,16 +72,16 @@ public class TimeAttack : GameMode
         switch (diff_name)
         {
             case "Easy":
-                leaderboard = GPGSIds.leaderboard_easy_score;
+                leaderboard = GPGSIds.leaderboard_easy_time_attack;
                 break;
             case "Medium":
-                leaderboard = GPGSIds.leaderboard_medium_score;
+                leaderboard = GPGSIds.leaderboard_medium_time_attack;
                 break;
             case "Hard":
-                leaderboard = GPGSIds.leaderboard_hard_score;
+                leaderboard = GPGSIds.leaderboard_hard_time_attack;
                 break;
             case "Insane":
-                leaderboard = GPGSIds.leaderboard_insane_score;
+                leaderboard = GPGSIds.leaderboard_insane_time_attack;
                 break;
             default:
                 return;
@@ -84,7 +89,7 @@ public class TimeAttack : GameMode
 
         Social.Active.ReportScore(currentScore, leaderboard, (bool success) => { });
 
-        AchievementManager.CheckScoreAchievements(diff_name, currentScore);
+        AchievementManager.CheckScoreAchievements("Time Attack", diff_name, currentScore);
     }
 
     public override Dictionary<string, string> GetGameSummary()

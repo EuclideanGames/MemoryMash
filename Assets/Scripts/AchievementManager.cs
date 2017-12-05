@@ -7,8 +7,8 @@ using GooglePlayGames.BasicApi;
 
 public class ScoreAchievement
 {
-    private string achievementID;
-    private int achievementScore;
+    private readonly string achievementID;
+    private readonly int achievementScore;
 
     public ScoreAchievement(string id, int score)
     {
@@ -19,7 +19,29 @@ public class ScoreAchievement
     public void CheckAchievement(int score)
     {
         if (score >= achievementScore)
-            Social.ReportProgress(achievementID, 100.0f, (bool success) => { });
+        {
+            Social.ReportProgress(achievementID, 100.0f, success => { });
+        }
+    }
+}
+
+public class TimeAchievement
+{
+    private readonly string achievementID;
+    private readonly float achievementTime;
+
+    public TimeAchievement(string id, float time)
+    {
+        achievementID = id;
+        achievementTime = time;
+    }
+
+    public void CheckAchievement(float time)
+    {
+        if (time >= achievementTime)
+        {
+            Social.ReportProgress(achievementID, 100.0f, success => { });
+        }
     }
 }
 
@@ -38,113 +60,201 @@ public class GamesPlayedAchievement
     }
 }
 
-public class TimeSurvivedAchievement
-{
-    private string achievementID;
-    private float achievementTime;
-
-    public TimeSurvivedAchievement(string id, float time)
-    {
-        achievementID = id;
-        achievementTime = time;
-    }
-
-    public void CheckAchievement(float time)
-    {
-        if (time >= achievementTime)
-            Social.ReportProgress(achievementID, 100.0f, (bool success) => { });
-    }
-}
-
 public class AchievementManager
 {
-    public static ScoreAchievement[] EasyScoreAchievements =
-    {
-        new ScoreAchievement(GPGSIds.achievement_easy_score_novice, 100),
-        new ScoreAchievement(GPGSIds.achievement_easy_score_apprentice, 250),
-        new ScoreAchievement(GPGSIds.achievement_easy_score_journeyman, 500),
-        new ScoreAchievement(GPGSIds.achievement_easy_score_expert, 1000),
-        new ScoreAchievement(GPGSIds.achievement_easy_score_adept, 2500),
-        new ScoreAchievement(GPGSIds.achievement_easy_score_master, 5000),
-        new ScoreAchievement(GPGSIds.achievement_easy_score_grandmaster, 10000),
-    };
+    public static Dictionary<string, Dictionary<string, List<ScoreAchievement>>> ScoreAchievements =
+        new Dictionary<string, Dictionary<string, List<ScoreAchievement>>>()
+        {
+            {
+                "TimeAttack",
+                new Dictionary<string, List<ScoreAchievement>>()
+                {
+                    {
+                        "Easy",
+                        new List<ScoreAchievement>()
+                        {
+                            new ScoreAchievement(GPGSIds.achievement_easy_time_attack_apprentice, 100),
+                            new ScoreAchievement(GPGSIds.achievement_easy_time_attack_expert, 100),
+                            new ScoreAchievement(GPGSIds.achievement_easy_time_attack_master, 100),
+                            new ScoreAchievement(GPGSIds.achievement_easy_time_attack_grandmaster, 100),
+                        }
+                    },
+                    {
+                        "Medium",
+                        new List<ScoreAchievement>()
+                        {
+                            new ScoreAchievement(GPGSIds.achievement_medium_time_attack_apprentice, 100),
+                            new ScoreAchievement(GPGSIds.achievement_medium_time_attack_expert, 100),
+                            new ScoreAchievement(GPGSIds.achievement_medium_time_attack_master, 100),
+                            new ScoreAchievement(GPGSIds.achievement_medium_time_attack_grandmaster, 100),
+                        }
+                    },
+                    {
+                        "Hard",
+                        new List<ScoreAchievement>()
+                        {
+                            new ScoreAchievement(GPGSIds.achievement_hard_time_attack_apprentice, 100),
+                            new ScoreAchievement(GPGSIds.achievement_hard_time_attack_expert, 100),
+                            new ScoreAchievement(GPGSIds.achievement_hard_time_attack_master, 100),
+                            new ScoreAchievement(GPGSIds.achievement_hard_time_attack_grandmaster, 100),
+                        }
+                    },
+                    {
+                        "Insane",
+                        new List<ScoreAchievement>()
+                        {
+                            new ScoreAchievement(GPGSIds.achievement_insane_time_attack_apprentice, 100),
+                            new ScoreAchievement(GPGSIds.achievement_insane_time_attack_expert, 100),
+                            new ScoreAchievement(GPGSIds.achievement_insane_time_attack_master, 100),
+                            new ScoreAchievement(GPGSIds.achievement_insane_time_attack_grandmaster, 100),
+                        }
+                    },
+                }
+            },
+            {
+                "Anchor",
+                new Dictionary<string, List<ScoreAchievement>>()
+                {
+                    {
+                        "Easy",
+                        new List<ScoreAchievement>()
+                        {
+                            new ScoreAchievement(GPGSIds.achievement_easy_anchor_apprentice, 100),
+                            new ScoreAchievement(GPGSIds.achievement_easy_anchor_expert, 100),
+                            new ScoreAchievement(GPGSIds.achievement_easy_anchor_master, 100),
+                            new ScoreAchievement(GPGSIds.achievement_easy_anchor_grandmaster, 100),
+                        }
+                    },
+                    {
+                        "Medium",
+                        new List<ScoreAchievement>()
+                        {
+                            new ScoreAchievement(GPGSIds.achievement_medium_anchor_apprentice, 100),
+                            new ScoreAchievement(GPGSIds.achievement_medium_anchor_expert, 100),
+                            new ScoreAchievement(GPGSIds.achievement_medium_anchor_master, 100),
+                            new ScoreAchievement(GPGSIds.achievement_medium_anchor_grandmaster, 100),
+                        }
+                    },
+                    {
+                        "Hard",
+                        new List<ScoreAchievement>()
+                        {
+                            new ScoreAchievement(GPGSIds.achievement_hard_anchor_apprentice, 100),
+                            new ScoreAchievement(GPGSIds.achievement_hard_anchor_expert, 100),
+                            new ScoreAchievement(GPGSIds.achievement_hard_anchor_master, 100),
+                            new ScoreAchievement(GPGSIds.achievement_hard_anchor_grandmaster, 100),
+                        }
+                    },
+                    {
+                        "Insane",
+                        new List<ScoreAchievement>()
+                        {
+                            new ScoreAchievement(GPGSIds.achievement_insane_anchor_apprentice, 100),
+                            new ScoreAchievement(GPGSIds.achievement_insane_anchor_expert, 100),
+                            new ScoreAchievement(GPGSIds.achievement_insane_anchor_master, 100),
+                            new ScoreAchievement(GPGSIds.achievement_insane_anchor_grandmaster, 100),
+                        }
+                    },
+                }
+            }
+        };
 
-    public static ScoreAchievement[] MediumScoreAchievements =
-    {
-        new ScoreAchievement(GPGSIds.achievement_medium_score_novice, 250),
-        new ScoreAchievement(GPGSIds.achievement_medium_score_apprentice, 500),
-        new ScoreAchievement(GPGSIds.achievement_medium_score_journeyman, 1000),
-        new ScoreAchievement(GPGSIds.achievement_medium_score_expert, 2500),
-        new ScoreAchievement(GPGSIds.achievement_medium_score_adept, 5000),
-        new ScoreAchievement(GPGSIds.achievement_medium_score_master, 10000),
-        new ScoreAchievement(GPGSIds.achievement_medium_score_grandmaster, 15000),
-    };
-
-    public static ScoreAchievement[] HardScoreAchievements =
-    {
-        new ScoreAchievement(GPGSIds.achievement_hard_score_novice, 100),
-        new ScoreAchievement(GPGSIds.achievement_hard_score_apprentice, 200),
-        new ScoreAchievement(GPGSIds.achievement_hard_score_journeyman, 300),
-        new ScoreAchievement(GPGSIds.achievement_hard_score_expert, 500),
-        new ScoreAchievement(GPGSIds.achievement_hard_score_adept, 1000),
-        new ScoreAchievement(GPGSIds.achievement_hard_score_master, 2500),
-        new ScoreAchievement(GPGSIds.achievement_hard_score_grandmaster, 5000),
-    };
-
-    public static ScoreAchievement[] InsaneScoreAchievements =
-    {
-        new ScoreAchievement(GPGSIds.achievement_insane_score_novice, 100),
-        new ScoreAchievement(GPGSIds.achievement_insane_score_apprentice, 200),
-        new ScoreAchievement(GPGSIds.achievement_insane_score_journeyman, 300),
-        new ScoreAchievement(GPGSIds.achievement_insane_score_expert, 400),
-        new ScoreAchievement(GPGSIds.achievement_insane_score_adept, 500),
-        new ScoreAchievement(GPGSIds.achievement_insane_score_master, 1000),
-        new ScoreAchievement(GPGSIds.achievement_insane_score_grandmaster, 2500),
-    };
-
-    public static TimeSurvivedAchievement[] EasyTimeAchievements =
-    {
-        new TimeSurvivedAchievement(GPGSIds.achievement_easy_survival_novice, 30),
-        new TimeSurvivedAchievement(GPGSIds.achievement_easy_survival_apprentice, 60),
-        new TimeSurvivedAchievement(GPGSIds.achievement_easy_survival_journeyman, 120),
-        new TimeSurvivedAchievement(GPGSIds.achievement_easy_survival_expert, 180),
-        new TimeSurvivedAchievement(GPGSIds.achievement_easy_survival_adept, 240),
-        new TimeSurvivedAchievement(GPGSIds.achievement_easy_survival_master, 300),
-        new TimeSurvivedAchievement(GPGSIds.achievement_easy_survival_grandmaster, 360),
-    };
-
-    public static TimeSurvivedAchievement[] MediumTimeAchievements =
-    {
-        new TimeSurvivedAchievement(GPGSIds.achievement_medium_survival_novice, 30),
-        new TimeSurvivedAchievement(GPGSIds.achievement_medium_survival_apprentice, 60),
-        new TimeSurvivedAchievement(GPGSIds.achievement_medium_survival_journeyman, 120),
-        new TimeSurvivedAchievement(GPGSIds.achievement_medium_survival_expert, 180),
-        new TimeSurvivedAchievement(GPGSIds.achievement_medium_survival_adept, 240),
-        new TimeSurvivedAchievement(GPGSIds.achievement_medium_survival_master, 300),
-        new TimeSurvivedAchievement(GPGSIds.achievement_medium_survival_grandmaster, 360),
-    };
-
-    public static TimeSurvivedAchievement[] HardTimeAchievements =
-    {
-        new TimeSurvivedAchievement(GPGSIds.achievement_hard_survival_novice, 30),
-        new TimeSurvivedAchievement(GPGSIds.achievement_hard_survival_apprentice, 60),
-        new TimeSurvivedAchievement(GPGSIds.achievement_hard_survival_journeyman, 120),
-        new TimeSurvivedAchievement(GPGSIds.achievement_hard_survival_expert, 180),
-        new TimeSurvivedAchievement(GPGSIds.achievement_hard_survival_adept, 240),
-        new TimeSurvivedAchievement(GPGSIds.achievement_hard_survival_master, 300),
-        new TimeSurvivedAchievement(GPGSIds.achievement_hard_survival_grandmaster, 360),
-    };
-
-    public static TimeSurvivedAchievement[] InsaneTimeAchievements =
-    {
-        new TimeSurvivedAchievement(GPGSIds.achievement_insane_survival_novice, 30),
-        new TimeSurvivedAchievement(GPGSIds.achievement_insane_survival_apprentice, 60),
-        new TimeSurvivedAchievement(GPGSIds.achievement_insane_survival_journeyman, 120),
-        new TimeSurvivedAchievement(GPGSIds.achievement_insane_survival_expert, 180),
-        new TimeSurvivedAchievement(GPGSIds.achievement_insane_survival_adept, 240),
-        new TimeSurvivedAchievement(GPGSIds.achievement_insane_survival_master, 300),
-        new TimeSurvivedAchievement(GPGSIds.achievement_insane_survival_grandmaster, 360),
-    };
+    public static Dictionary<string, Dictionary<string, List<TimeAchievement>>> TimeAchievements =
+        new Dictionary<string, Dictionary<string, List<TimeAchievement>>>()
+        {
+            {
+                "Survival",
+                new Dictionary<string, List<TimeAchievement>>()
+                {
+                    {
+                        "Easy",
+                        new List<TimeAchievement>()
+                        {
+                            new TimeAchievement(GPGSIds.achievement_easy_survival_apprentice, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_easy_survival_expert, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_easy_survival_master, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_easy_survival_grandmaster, 1.0f),
+                        }
+                    },
+                    {
+                        "Medium",
+                        new List<TimeAchievement>()
+                        {
+                            new TimeAchievement(GPGSIds.achievement_medium_survival_apprentice, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_medium_survival_expert, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_medium_survival_master, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_medium_survival_grandmaster, 1.0f),
+                        }
+                    },
+                    {
+                        "Hard",
+                        new List<TimeAchievement>()
+                        {
+                            new TimeAchievement(GPGSIds.achievement_hard_survival_apprentice, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_hard_survival_expert, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_hard_survival_master, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_hard_survival_grandmaster, 1.0f),
+                        }
+                    },
+                    {
+                        "Insane",
+                        new List<TimeAchievement>()
+                        {
+                            new TimeAchievement(GPGSIds.achievement_insane_survival_apprentice, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_insane_survival_expert, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_insane_survival_master, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_insane_survival_grandmaster, 1.0f),
+                        }
+                    }
+                }
+            },
+            {
+                "Frenzy",
+                new Dictionary<string, List<TimeAchievement>>()
+                {
+                    {
+                        "Easy",
+                        new List<TimeAchievement>()
+                        {
+                            new TimeAchievement(GPGSIds.achievement_easy_frenzy_apprentice, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_easy_frenzy_expert, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_easy_frenzy_master, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_easy_frenzy_grandmaster, 1.0f),
+                        }
+                    },
+                    {
+                        "Medium",
+                        new List<TimeAchievement>()
+                        {
+                            new TimeAchievement(GPGSIds.achievement_medium_frenzy_apprentice, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_medium_frenzy_expert, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_medium_frenzy_master, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_medium_frenzy_grandmaster, 1.0f),
+                        }
+                    },
+                    {
+                        "Hard",
+                        new List<TimeAchievement>()
+                        {
+                            new TimeAchievement(GPGSIds.achievement_hard_frenzy_apprentice, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_hard_frenzy_expert, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_hard_frenzy_master, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_hard_frenzy_grandmaster, 1.0f),
+                        }
+                    },
+                    {
+                        "Insane",
+                        new List<TimeAchievement>()
+                        {
+                            new TimeAchievement(GPGSIds.achievement_insane_frenzy_apprentice, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_insane_frenzy_expert, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_insane_frenzy_master, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_insane_frenzy_grandmaster, 1.0f),
+                        }
+                    },
+                }
+            }
+        };
 
     public static GamesPlayedAchievement[] GamesAchievements =
     {
@@ -153,49 +263,19 @@ public class AchievementManager
         new GamesPlayedAchievement(GPGSIds.achievement_play_1000_games, 1000),
     };
 
-    public static void CheckScoreAchievements(string diffName, int score)
+    public static void CheckScoreAchievements(string mode, string difficulty, int score)
     {
-        switch (diffName)
+        foreach (ScoreAchievement achievement in ScoreAchievements[mode][difficulty])
         {
-            case "Easy":
-                foreach (ScoreAchievement achieve in EasyScoreAchievements)
-                    achieve.CheckAchievement(score);
-                break;
-            case "Medium":
-                foreach (ScoreAchievement achieve in MediumScoreAchievements)
-                    achieve.CheckAchievement(score);
-                break;
-            case "Hard":
-                foreach (ScoreAchievement achieve in HardScoreAchievements)
-                    achieve.CheckAchievement(score);
-                break;
-            case "Insane":
-                foreach (ScoreAchievement achieve in InsaneScoreAchievements)
-                    achieve.CheckAchievement(score);
-                break;
+            achievement.CheckAchievement(score);
         }
     }
 
-    public static void CheckTimeAchievements(string diffName, float time)
+    public static void CheckTimeAchievements(string mode, string difficulty, float time)
     {
-        switch (diffName)
+        foreach (TimeAchievement achievement in TimeAchievements[mode][difficulty])
         {
-            case "Easy":
-                foreach (TimeSurvivedAchievement achieve in EasyTimeAchievements)
-                    achieve.CheckAchievement(time);
-                break;
-            case "Medium":
-                foreach (TimeSurvivedAchievement achieve in MediumTimeAchievements)
-                    achieve.CheckAchievement(time);
-                break;
-            case "Hard":
-                foreach (TimeSurvivedAchievement achieve in HardTimeAchievements)
-                    achieve.CheckAchievement(time);
-                break;
-            case "Insane":
-                foreach (TimeSurvivedAchievement achieve in InsaneTimeAchievements)
-                    achieve.CheckAchievement(time);
-                break;
+            achievement.CheckAchievement(time);
         }
     }
 
