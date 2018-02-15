@@ -22,11 +22,6 @@ public class Difficulty : ScriptableObject
     public float TimeAllowedBetweenHits;
     public int ExtraLifeComboRequirement;
 
-    [Header("Frenzy Settings")]
-    public float InitialSpawnTimer;
-    [Range(0.1f, 1.0f)]
-    public float TimerDecayRate;
-
     [Header("Anchor Settings")]
     public float AnchorStartTimer;
     public float AnchorSwitchTimer;

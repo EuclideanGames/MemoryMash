@@ -226,12 +226,9 @@ public class GameManager : MonoBehaviour
                 activeGameMode = new Survival();
                 break;
             case 2:
-                activeGameMode = new Frenzy();
-                break;
-            case 3:
                 activeGameMode = new Anchor();
                 break;
-            case 4:
+            case 3:
                 activeGameMode = new ColorCode();
                 break;
             default:

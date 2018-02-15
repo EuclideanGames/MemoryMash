@@ -56,7 +56,7 @@ public class GamesPlayedAchievement
 
     public void IncrementAchievementProgress(int games)
     {
-        //PlayGamesPlatform.Instance.IncrementAchievement(achievementID, games, (bool success) => { });
+        PlayGamesPlatform.Instance.IncrementAchievement(achievementID, games, (bool success) => { });
     }
 }
 
@@ -73,38 +73,38 @@ public class AchievementManager
                         "Easy",
                         new List<ScoreAchievement>()
                         {
-                            new ScoreAchievement(GPGSIds.achievement_easy_time_attack_apprentice, 100),
-                            new ScoreAchievement(GPGSIds.achievement_easy_time_attack_expert, 100),
-                            new ScoreAchievement(GPGSIds.achievement_easy_time_attack_master, 100),
-                            new ScoreAchievement(GPGSIds.achievement_easy_time_attack_grandmaster, 100),
+                            new ScoreAchievement(GPGSIds.achievement_easy_time_attack_apprentice, 500),
+                            new ScoreAchievement(GPGSIds.achievement_easy_time_attack_expert, 1000),
+                            new ScoreAchievement(GPGSIds.achievement_easy_time_attack_master, 2000),
+                            new ScoreAchievement(GPGSIds.achievement_easy_time_attack_grandmaster, 4000),
                         }
                     },
                     {
                         "Medium",
                         new List<ScoreAchievement>()
                         {
-                            new ScoreAchievement(GPGSIds.achievement_medium_time_attack_apprentice, 100),
-                            new ScoreAchievement(GPGSIds.achievement_medium_time_attack_expert, 100),
-                            new ScoreAchievement(GPGSIds.achievement_medium_time_attack_master, 100),
-                            new ScoreAchievement(GPGSIds.achievement_medium_time_attack_grandmaster, 100),
+                            new ScoreAchievement(GPGSIds.achievement_medium_time_attack_apprentice, 500),
+                            new ScoreAchievement(GPGSIds.achievement_medium_time_attack_expert, 1000),
+                            new ScoreAchievement(GPGSIds.achievement_medium_time_attack_master, 2000),
+                            new ScoreAchievement(GPGSIds.achievement_medium_time_attack_grandmaster, 4000),
                         }
                     },
                     {
                         "Hard",
                         new List<ScoreAchievement>()
                         {
-                            new ScoreAchievement(GPGSIds.achievement_hard_time_attack_apprentice, 100),
-                            new ScoreAchievement(GPGSIds.achievement_hard_time_attack_expert, 100),
-                            new ScoreAchievement(GPGSIds.achievement_hard_time_attack_master, 100),
-                            new ScoreAchievement(GPGSIds.achievement_hard_time_attack_grandmaster, 100),
+                            new ScoreAchievement(GPGSIds.achievement_hard_time_attack_apprentice, 500),
+                            new ScoreAchievement(GPGSIds.achievement_hard_time_attack_expert, 1000),
+                            new ScoreAchievement(GPGSIds.achievement_hard_time_attack_master, 2000),
+                            new ScoreAchievement(GPGSIds.achievement_hard_time_attack_grandmaster, 4000),
                         }
                     },
                     {
                         "Insane",
                         new List<ScoreAchievement>()
                         {
-                            new ScoreAchievement(GPGSIds.achievement_insane_time_attack_apprentice, 100),
-                            new ScoreAchievement(GPGSIds.achievement_insane_time_attack_expert, 100),
+                            new ScoreAchievement(GPGSIds.achievement_insane_time_attack_apprentice, 500),
+                            new ScoreAchievement(GPGSIds.achievement_insane_time_attack_expert, 1000),
                             new ScoreAchievement(GPGSIds.achievement_insane_time_attack_master, 100),
                             new ScoreAchievement(GPGSIds.achievement_insane_time_attack_grandmaster, 100),
                         }
@@ -119,40 +119,40 @@ public class AchievementManager
                         "Easy",
                         new List<ScoreAchievement>()
                         {
-                            new ScoreAchievement(GPGSIds.achievement_easy_anchor_apprentice, 100),
-                            new ScoreAchievement(GPGSIds.achievement_easy_anchor_expert, 100),
-                            new ScoreAchievement(GPGSIds.achievement_easy_anchor_master, 100),
-                            new ScoreAchievement(GPGSIds.achievement_easy_anchor_grandmaster, 100),
+                            new ScoreAchievement(GPGSIds.achievement_easy_anchor_apprentice, 500),
+                            new ScoreAchievement(GPGSIds.achievement_easy_anchor_expert, 1000),
+                            new ScoreAchievement(GPGSIds.achievement_easy_anchor_master, 1500),
+                            new ScoreAchievement(GPGSIds.achievement_easy_anchor_grandmaster, 2000),
                         }
                     },
                     {
                         "Medium",
                         new List<ScoreAchievement>()
                         {
-                            new ScoreAchievement(GPGSIds.achievement_medium_anchor_apprentice, 100),
-                            new ScoreAchievement(GPGSIds.achievement_medium_anchor_expert, 100),
-                            new ScoreAchievement(GPGSIds.achievement_medium_anchor_master, 100),
-                            new ScoreAchievement(GPGSIds.achievement_medium_anchor_grandmaster, 100),
+                            new ScoreAchievement(GPGSIds.achievement_medium_anchor_apprentice, 500),
+                            new ScoreAchievement(GPGSIds.achievement_medium_anchor_expert, 1000),
+                            new ScoreAchievement(GPGSIds.achievement_medium_anchor_master, 1500),
+                            new ScoreAchievement(GPGSIds.achievement_medium_anchor_grandmaster, 2000),
                         }
                     },
                     {
                         "Hard",
                         new List<ScoreAchievement>()
                         {
-                            new ScoreAchievement(GPGSIds.achievement_hard_anchor_apprentice, 100),
-                            new ScoreAchievement(GPGSIds.achievement_hard_anchor_expert, 100),
-                            new ScoreAchievement(GPGSIds.achievement_hard_anchor_master, 100),
-                            new ScoreAchievement(GPGSIds.achievement_hard_anchor_grandmaster, 100),
+                            new ScoreAchievement(GPGSIds.achievement_hard_anchor_apprentice, 500),
+                            new ScoreAchievement(GPGSIds.achievement_hard_anchor_expert, 1000),
+                            new ScoreAchievement(GPGSIds.achievement_hard_anchor_master, 1500),
+                            new ScoreAchievement(GPGSIds.achievement_hard_anchor_grandmaster, 2000),
                         }
                     },
                     {
                         "Insane",
                         new List<ScoreAchievement>()
                         {
-                            new ScoreAchievement(GPGSIds.achievement_insane_anchor_apprentice, 100),
-                            new ScoreAchievement(GPGSIds.achievement_insane_anchor_expert, 100),
-                            new ScoreAchievement(GPGSIds.achievement_insane_anchor_master, 100),
-                            new ScoreAchievement(GPGSIds.achievement_insane_anchor_grandmaster, 100),
+                            new ScoreAchievement(GPGSIds.achievement_insane_anchor_apprentice, 500),
+                            new ScoreAchievement(GPGSIds.achievement_insane_anchor_expert, 1000),
+                            new ScoreAchievement(GPGSIds.achievement_insane_anchor_master, 1500),
+                            new ScoreAchievement(GPGSIds.achievement_insane_anchor_grandmaster, 2000),
                         }
                     },
                 }
@@ -170,90 +170,44 @@ public class AchievementManager
                         "Easy",
                         new List<TimeAchievement>()
                         {
-                            new TimeAchievement(GPGSIds.achievement_easy_survival_apprentice, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_easy_survival_expert, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_easy_survival_master, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_easy_survival_grandmaster, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_easy_survival_apprentice, 90.0f),
+                            new TimeAchievement(GPGSIds.achievement_easy_survival_expert, 180.0f),
+                            new TimeAchievement(GPGSIds.achievement_easy_survival_master, 360.0f),
+                            new TimeAchievement(GPGSIds.achievement_easy_survival_grandmaster, 720.0f),
                         }
                     },
                     {
                         "Medium",
                         new List<TimeAchievement>()
                         {
-                            new TimeAchievement(GPGSIds.achievement_medium_survival_apprentice, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_medium_survival_expert, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_medium_survival_master, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_medium_survival_grandmaster, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_medium_survival_apprentice, 60.0f),
+                            new TimeAchievement(GPGSIds.achievement_medium_survival_expert, 120.0f),
+                            new TimeAchievement(GPGSIds.achievement_medium_survival_master, 240.0f),
+                            new TimeAchievement(GPGSIds.achievement_medium_survival_grandmaster, 480.0f),
                         }
                     },
                     {
                         "Hard",
                         new List<TimeAchievement>()
                         {
-                            new TimeAchievement(GPGSIds.achievement_hard_survival_apprentice, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_hard_survival_expert, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_hard_survival_master, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_hard_survival_grandmaster, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_hard_survival_apprentice, 30.0f),
+                            new TimeAchievement(GPGSIds.achievement_hard_survival_expert, 60.0f),
+                            new TimeAchievement(GPGSIds.achievement_hard_survival_master, 120.0f),
+                            new TimeAchievement(GPGSIds.achievement_hard_survival_grandmaster, 240.0f),
                         }
                     },
                     {
                         "Insane",
                         new List<TimeAchievement>()
                         {
-                            new TimeAchievement(GPGSIds.achievement_insane_survival_apprentice, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_insane_survival_expert, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_insane_survival_master, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_insane_survival_grandmaster, 1.0f),
+                            new TimeAchievement(GPGSIds.achievement_insane_survival_apprentice, 30.0f),
+                            new TimeAchievement(GPGSIds.achievement_insane_survival_expert, 60.0f),
+                            new TimeAchievement(GPGSIds.achievement_insane_survival_master, 90.0f),
+                            new TimeAchievement(GPGSIds.achievement_insane_survival_grandmaster, 120.0f),
                         }
                     }
                 }
             },
-            {
-                "Frenzy",
-                new Dictionary<string, List<TimeAchievement>>()
-                {
-                    {
-                        "Easy",
-                        new List<TimeAchievement>()
-                        {
-                            new TimeAchievement(GPGSIds.achievement_easy_frenzy_apprentice, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_easy_frenzy_expert, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_easy_frenzy_master, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_easy_frenzy_grandmaster, 1.0f),
-                        }
-                    },
-                    {
-                        "Medium",
-                        new List<TimeAchievement>()
-                        {
-                            new TimeAchievement(GPGSIds.achievement_medium_frenzy_apprentice, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_medium_frenzy_expert, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_medium_frenzy_master, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_medium_frenzy_grandmaster, 1.0f),
-                        }
-                    },
-                    {
-                        "Hard",
-                        new List<TimeAchievement>()
-                        {
-                            new TimeAchievement(GPGSIds.achievement_hard_frenzy_apprentice, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_hard_frenzy_expert, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_hard_frenzy_master, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_hard_frenzy_grandmaster, 1.0f),
-                        }
-                    },
-                    {
-                        "Insane",
-                        new List<TimeAchievement>()
-                        {
-                            new TimeAchievement(GPGSIds.achievement_insane_frenzy_apprentice, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_insane_frenzy_expert, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_insane_frenzy_master, 1.0f),
-                            new TimeAchievement(GPGSIds.achievement_insane_frenzy_grandmaster, 1.0f),
-                        }
-                    },
-                }
-            }
         };
 
     public static GamesPlayedAchievement[] GamesAchievements =
