@@ -24,6 +24,8 @@ public class Survival : GameMode
         }
     }
 
+    public static readonly string HelpText = "Hold out for as long as you can, hitting squares in the order that they appear. Hitting the wrong square will cost you a live, but they can be earned back by getting a combo.";
+
     private float timeSurvived;
     private float timeSinceLastHit;
     private int livesRemaining;
@@ -93,7 +95,7 @@ public class Survival : GameMode
         Social.Active.ReportScore(Mathf.FloorToInt(timeSurvived), 
             leaderboard, (bool success) => { });
 
-        AchievementManager.CheckTimeAchievements("Survival", diff_name, timeSurvived);
+        //AchievementManager.CheckTimeAchievements("Survival", diff_name, timeSurvived);
     }
 
     public override Dictionary<string, string> GetGameSummary()

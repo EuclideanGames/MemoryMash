@@ -24,6 +24,8 @@ public class TimeAttack : GameMode
         }
     }
 
+    public static readonly string HelpText = "Hit squares in the order that they appear, and hit them fast, you only have a limited amount of time! The more you hit correctly, the higher your multiplier.";
+
     private int currentScore;
     private float timeRemaining;
 
@@ -89,7 +91,7 @@ public class TimeAttack : GameMode
 
         Social.Active.ReportScore(currentScore, leaderboard, (bool success) => { });
 
-        AchievementManager.CheckScoreAchievements("Time Attack", diff_name, currentScore);
+        //AchievementManager.CheckScoreAchievements("Time Attack", diff_name, currentScore);
     }
 
     public override Dictionary<string, string> GetGameSummary()

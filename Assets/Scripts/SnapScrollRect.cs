@@ -44,6 +44,8 @@ public class SnapScrollRect : MonoBehaviour, IBeginDragHandler, IEndDragHandler,
         scrollRectContainer = scrollRectComponent.content;
         pageCount = scrollRectContainer.childCount;
 
+        Debug.Log(name + ": " + pageCount);
+
         horizontal = (scrollRectComponent.horizontal && !scrollRectComponent.vertical);
 
         lerping = false;

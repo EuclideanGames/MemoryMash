@@ -28,6 +28,8 @@ public class Anchor : GameMode
         }
     }
 
+    public static readonly string HelpText = "Hit squares in the order that they appear, while holding down a special anchor square.";
+
     private Square anchorSquare;
     private int anchorIndex;
     private int currentScore;
@@ -101,7 +103,7 @@ public class Anchor : GameMode
         }
 
         Social.Active.ReportScore(currentScore, leaderboard, success => { });
-        AchievementManager.CheckScoreAchievements("Anchor", diffName, currentScore);
+        //AchievementManager.CheckScoreAchievements("Anchor", diffName, currentScore);
     }
 
     public override Dictionary<string, string> GetGameSummary()

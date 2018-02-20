@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     #region Variables
     public CanvasGroup MenuPanel;
     public Text AuthenticationText;
+    public TextMeshProUGUI GameHelpText;
+    public CanvasGroup GameMenuPanel;
+    public CanvasGroup HelpMenuPanel;
 
     public CanvasGroup GamePanel;
     public Text ScoreText;
@@ -184,10 +187,12 @@ public class GameManager : MonoBehaviour
 
     public void OpenAchievements()
     {
-        if (Social.localUser.authenticated)
-        {
-            Social.Active.ShowAchievementsUI();
-        }
+        Debug.LogWarning("Achievements are not currently implemented");
+
+        // if (Social.localUser.authenticated)
+        // {
+        //     Social.Active.ShowAchievementsUI();
+        // }
     }
 
     public void OpenLeaderboard()
@@ -247,6 +252,40 @@ public class GameManager : MonoBehaviour
         activeGameMode.InitializeGame();
         
         StartCoroutine(activeGameMode.InitializeGrid());
+    }
+
+    public void ShowHelpText()
+    {
+        string helpText = string.Empty;
+
+        switch(selectedGameModeIndex)
+        {
+            case 0:
+                helpText = TimeAttack.HelpText;
+                break;
+            case 1:
+                helpText = Survival.HelpText;
+                break;
+            case 2:
+                helpText = Anchor.HelpText;
+                break;
+            case 3:
+                helpText = ColorCode.HelpText;
+                break;
+            default:
+                break;
+        }
+
+        GameHelpText.text = helpText;
+
+        GameMenuPanel.Hide();
+        HelpMenuPanel.Show();
+    }
+
+    public void CloseHelpText()
+    {
+        HelpMenuPanel.Hide();
+        GameMenuPanel.Show();
     }
     #endregion
 
@@ -311,7 +350,7 @@ public class GameManager : MonoBehaviour
         PopulateSummaryData();
         SwitchToSummary();
 
-        AchievementManager.IncrementGamesAchievements(1);
+        //AchievementManager.IncrementGamesAchievements(1);
 
         if (timeSinceLastAd > MaxTimeBetweenAds)
         {

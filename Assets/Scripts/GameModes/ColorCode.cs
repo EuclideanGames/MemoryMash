@@ -7,6 +7,8 @@ public class ColorCode : GameMode
     //TODO: Allow multiple squares of the same color
     //TODO: Change hit check to use spawn order for squares of the same color
 
+    public static readonly string HelpText = string.Empty;
+
     public int CurrentScore
     {
         get { return currentScore; }
